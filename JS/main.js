@@ -16,3 +16,26 @@
  * 
 \************************************************************************************************************************************************/
 
+// ---------- FASE 1 ( Generazione dei 16 numeri random 1 - 100 )
+
+
+var bomb = fineGioco();
+console.log(bomb);
+
+////////// FUNZIONI \\\\\\\\\\
+
+function randomNumber(min, max) {  //---------------------------- Genera un numero random ( 1 - 100)
+    return Math.floor( Math.random() * (max - min) + min) + min;
+}
+
+function fineGioco() { //---------------------------------------- Array di 16 numeri ( bombe )
+    
+    var numero = [];
+
+    for (var i = 0; i < 16; i++) {     
+        numero.push( randomNumber(1, 16));
+    }
+
+    return numero;
+}
+
