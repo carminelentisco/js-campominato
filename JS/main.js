@@ -18,9 +18,41 @@
 
 // ---------- FASE 1 ( Generazione dei 16 numeri random 1 - 100 )
 
-
+// Array delle mine
 var bomb = fineGioco();
-console.log(bomb);
+
+
+// Numeri inseriti
+var numeriUtenteInseriti = [];
+
+
+
+while (!bomb.includes(numeroUtente)) {
+    // Numeri utente 
+    var numeroUtente = parseInt( prompt('Inserisci un numero da 1 - 100 : ') );
+    
+    // Controllo doppione del numero + aggunta all array [ numeriUtenteInseriti ]
+    if (numeriUtenteInseriti.includes(numeroUtente)) {
+        alert('Questo numero è gia stato inserito, inseriscine un altro');
+    } else {
+        numeriUtenteInseriti.push(numeroUtente);
+    }
+
+}
+
+
+// Controlli di debug
+console.log('ULTIMO NUMERO UTENTE INSERITO : ', numeroUtente);
+console.log('NUMERI UTENTE INSERITI : ', numeriUtenteInseriti);
+console.log('NUMERI BOMBA : ', bomb);
+console.log('PUNTEGGIO : ', numeriUtenteInseriti.length);
+
+if (bomb.includes(numeroUtente)) {
+    console.log('Ritenta');
+} else {
+    console.log ('Hai Vinto')
+}
+
 
 ////////// FUNZIONI \\\\\\\\\\
 
@@ -33,7 +65,7 @@ function fineGioco() { //---------------------------------------- Array di 16 nu
     var numero = [];
 
     for (var i = 0; i < 16; i++) {     
-        numero.push( randomNumber(1, 16));
+        numero.push( randomNumber(1, 100));
     }
 
     return numero;
