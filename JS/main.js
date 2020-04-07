@@ -14,60 +14,189 @@
  * 
  *  4)Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
  * 
+ * BONUS:
+ * All’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
+ * con difficoltà 0 => tra 1 e 100
+ * con difficoltà 1 =>  tra 1 e 80
+ * con difficoltà 2=> tra 1 e 50
+ * 
 \************************************************************************************************************************************************/
 
-// ---------- FASE 1 ( Generazione dei 16 numeri random 1 - 100 )
 
-// Array delle mine
-var bomb = fineGioco();
+var difficoltà = difficoltàCheck();            // Richiesta + Controllo della difficoltà
+var bomb = listaDifficoltàGioco(difficoltà);   // Impostazione dalla difficoltà
+var listaNumeriUtente = [];                    // Lista numeri inseriti dall utente
 
+/*****************
+ * 
+ * Loop di gioco
+ *  
+ ****************/
 
-// Numeri inseriti
-var numeriUtenteInseriti = [];
+if (difficoltà == 'facile') {                                                     // Se la difficoltà è Facile
+   
+    while (bomb.includes(numeroUtente) !== true){
+        
+        var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 100 : '));
 
+        while ( (numeroUtente < 1) || (numeroUtente > 100)) {
+            
+            alert('Il numero inserito non è corretto. ')
+            numeroUtente = parseInt(prompt('Inserici un numero da 1 - 100 : '));
 
-
-while (!bomb.includes(numeroUtente)) {
-    // Numeri utente 
-    var numeroUtente = parseInt( prompt('Inserisci un numero da 1 - 100 : ') );
+        }
     
-    // Controllo doppione del numero + aggunta all array [ numeriUtenteInseriti ]
-    if (numeriUtenteInseriti.includes(numeroUtente)) {
-        alert('Questo numero è gia stato inserito, inseriscine un altro');
-    } else {
-        numeriUtenteInseriti.push(numeroUtente);
+        if (listaNumeriUtente.includes(numeroUtente)) {
+        
+            alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
+    
+        } else {
+        
+            listaNumeriUtente.push(numeroUtente);
+        }
+
+    }
+
+} else if (difficoltà == 'media') {                                               // Se la difficoltà è Media
+
+    while (bomb.includes(numeroUtente) !== true){
+        
+        var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 80 : '));
+
+        while ( (numeroUtente < 1) || (numeroUtente > 80)) {
+            
+            alert('Il numero inserito non è corretto. ')
+            numeroUtente = parseInt(prompt('Inserici un numero da 1 - 80 : '));
+
+        }
+        
+        if (listaNumeriUtente.includes(numeroUtente)) {
+            
+            alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
+        
+        } else {
+            
+            listaNumeriUtente.push(numeroUtente);
+        
+        }
+
+    }
+
+} else if (difficoltà == 'difficile') {                                           // Se la difficoltà è Difficile
+    
+    while (bomb.includes(numeroUtente) !== true){
+        
+        var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 50 : '));
+
+        while ( (numeroUtente < 1) || (numeroUtente > 50)) {
+            
+            alert('Il numero inserito non è corretto. ')
+            numeroUtente = parseInt(prompt('Inserici un numero da 1 - 50 : '));
+
+        }
+        
+        if (listaNumeriUtente.includes(numeroUtente)) {
+        
+            alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
+        
+        } else {
+        
+            listaNumeriUtente.push(numeroUtente);
+        
+        }
+    
     }
 
 }
 
+/*******************
+ * 
+ * RISULTATO FINALE
+ * 
+ ******************/
 
-// Controlli di debug
-console.log('ULTIMO NUMERO UTENTE INSERITO : ', numeroUtente);
-console.log('NUMERI UTENTE INSERITI : ', numeriUtenteInseriti);
-console.log('NUMERI BOMBA : ', bomb);
-console.log('PUNTEGGIO : ', numeriUtenteInseriti.length);
-
-if (bomb.includes(numeroUtente)) {
-    console.log('Ritenta');
-} else {
-    console.log ('Hai Vinto')
+if (bomb.includes(numeroUtente)) {                                                                 // Se hai perso
+    console.log('<---------- DATI INSERITI DALL UTENTE ---------->');
+    console.log('');
+    console.log('ULTIMO NUMERO UTENTE INSERITO : ', numeroUtente);
+    console.log('');
+    console.log('<---------- DATI ELABORATI ---------->');
+    console.log('');
+    console.log('NUMERI UTENTE INSERITI : ', listaNumeriUtente);
+    console.log('NUMERI BOMBA : ', bomb);
+    console.log('');
+    console.log('<---------- RISULTATO FINALE ---------->');
+    console.log('');
+    console.log('Ritenta sarai più fortunato. ');
+    console.log('IL TUO PUNTEGGIO : ', listaNumeriUtente.length);          
+} else {                                                                                           // Se hai vinto
+    console.log('Congratulazioni hai vinto!! ');
 }
+
 
 
 ////////// FUNZIONI \\\\\\\\\\
 
-function randomNumber(min, max) {  //---------------------------- Genera un numero random ( 1 - 100)
+function randomNumber(min, max) {  //------------------------------------------------- Genera un numero random
     return Math.floor( Math.random() * (max - min) + min) + min;
 }
 
-function fineGioco() { //---------------------------------------- Array di 16 numeri ( bombe )
-    
-    var numero = [];
+function difficoltàCheck() { //------------------------------------------------------- Controllo inserimento difficoltà utente
 
-    for (var i = 0; i < 16; i++) {     
-        numero.push( randomNumber(1, 100));
+    var difficoltà = prompt('Seleziona la difficoltà : \n - Facile \n - Media \n - Difficile').toLowerCase().trim();  
+
+    while ( (difficoltà != 'facile') && (difficoltà != 'media') && (difficoltà != 'difficile') ) {
+        alert('Errore');
+        difficoltà = prompt('Seleziona la difficoltà : \n - Facile \n - Media \n - Difficile').toLowerCase().trim();  
     }
 
+    return difficoltà;
+}
+
+function listaDifficoltàGioco(difficoltà) { //---------------------------------------- Difficolta + lista random correlata
+    
+    var numero = [];
+    
+    if (difficoltà == 'facile') {
+        while (numero.length < 16) {  
+            
+            var random = randomNumber(1, 100);
+            
+            if (!numero.includes(random)) { 
+            
+                numero.push(random);
+            
+            }
+        }
+    
+    } else if (difficoltà == 'media') {
+        
+        while (numero.length < 16) {  
+           
+            var random = randomNumber(1, 80);
+            
+            if (!numero.includes(random)) { 
+            
+                numero.push(random);
+            
+            }
+        }
+    
+    } else if (difficoltà == 'difficile') {
+        
+        while (numero.length < 16) {  
+            
+            var random = randomNumber(1, 50);
+            
+            if (!numero.includes(random)) { 
+            
+                numero.push(random);
+            
+            }
+        }
+    }
+    
     return numero;
 }
+
 
