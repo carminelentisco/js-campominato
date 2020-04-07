@@ -4,8 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campo Minato</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="CSS/main.css">
 </head>
 <body>
+    <div class="page">
+        
+        <!-- Title page -->
+        <header class="title">
+            <h1>CampoMinato</h1>
+        </header>
+
+        <!-- Risultati -->
+        <section>
+            
+            <div class="input-utente">
+                
+                <h2 class="sub-title">DATI CHE HAI INSERITO</h2>
+                <div>
+                    <span>Ultimo numero che hai inserito: <span id = "numero-utente-html"></span>
+                </div>
+                
+                <h2 class="sub-title">DATI ELABORATI</h2>
+                <div>
+                    <span class="display_block padding_bottom_10">Numeri da te inseriti : <span id = "lista-numeri-utente-html"></span></span>
+                    <span class="display_block padding_bottom_10">Numeri BOMBA : <span id = "bomb-html"></span>
+                </div>
+
+                <h2 class="sub-title">RISULTATO</h2>
+                <div>
+                    <h2 id = "risultato" class="sub-title"></h2>
+                    <span>score : <span id = "score"></span></span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </div>
+    
     <!-- JS -->
     <script src="JS/main.js"></script>
 </body>
