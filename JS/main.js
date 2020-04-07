@@ -115,7 +115,7 @@ if (difficoltà == 'facile') {                                                  
  * 
  ******************/
 
-if (bomb.includes(numeroUtente)) {                                                                 // Se hai perso
+if (bomb.includes(numeroUtente)) {                                                // Se hai perso
     console.log('<---------- DATI INSERITI DALL UTENTE ---------->');
     console.log('');
     console.log('ULTIMO NUMERO UTENTE INSERITO : ', numeroUtente);
@@ -129,7 +129,7 @@ if (bomb.includes(numeroUtente)) {                                              
     console.log('');
     console.log('Ritenta sarai più fortunato. ');
     console.log('IL TUO PUNTEGGIO : ', listaNumeriUtente.length);          
-} else {                                                                                           // Se hai vinto
+} else {                                                                          // Se hai vinto
     console.log('Congratulazioni hai vinto!! ');
 }
 
