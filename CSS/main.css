@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+
+/* --- GENERAL --- */
+
+body {
+    background-color: rgb(165, 95, 4);
+}
+
+.page {
+    width: 1000px;
+    margin: 0 auto;
+    font-family: 'PT Mono', monospace;
+}
+
+/* Utility */
+
+.display_block{
+    display: block;
+}
+
+.padding_bottom_10 {
+    margin: 0 0 10px 0;
+}
+
+/* --- PAGINA --- */
+
+/* Header */
+
+.title {
+    color: #fff;
+    padding: 10px 0;
+    margin: 20px 0 0 0;
+    background-color: #000;
+}
+
+.title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Risultato */
+
+.input-utente {
+    background-color: #fff;
+    padding: 20px 20px;
+}
+
+.sub-title {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
