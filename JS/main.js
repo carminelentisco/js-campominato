@@ -27,87 +27,95 @@ var difficoltà = difficoltàCheck();            // Richiesta + Controllo della 
 var bomb = listaDifficoltàGioco(difficoltà);   // Impostazione dalla difficoltà
 var listaNumeriUtente = [];                    // Lista numeri inseriti dall utente
 
-/*****************
+/*****************\
  * 
  * Loop di gioco
  *  
- ****************/
+\*****************/
 
-if (difficoltà == 'facile') {                                                     // Se la difficoltà è Facile
-   
-    while (bomb.includes(numeroUtente) !== true){
-        
-        var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 100 : '));
-
-        while ( (numeroUtente < 1) || (numeroUtente > 100)) {
-            
-            alert('Il numero inserito non è corretto. ')
-            numeroUtente = parseInt(prompt('Inserici un numero da 1 - 100 : '));
-
-        }
+switch (difficoltà) {
     
-        if (listaNumeriUtente.includes(numeroUtente)) {
+    case 'facile': 
         
-            alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
+        while  (bomb.includes(numeroUtente) !== true)  {
+
+            var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 100 : '));   
+            
+            while ( (numeroUtente < 1) || (numeroUtente > 100)) {
+            
+                alert('Il numero inserito non è corretto. ')
+                numeroUtente = parseInt(prompt('Inserici un numero da 1 - 100 : '));
     
-        } else {
+            }
+
+            if (listaNumeriUtente.includes(numeroUtente)) {
         
-            listaNumeriUtente.push(numeroUtente);
+                alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
+        
+            } else {
+            
+                listaNumeriUtente.push(numeroUtente);
+            }
+
         }
 
-    }
-
-} else if (difficoltà == 'media') {                                               // Se la difficoltà è Media
-
-    while (bomb.includes(numeroUtente) !== true){
-        
-        var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 80 : '));
-
-        while ( (numeroUtente < 1) || (numeroUtente > 80)) {
-            
-            alert('Il numero inserito non è corretto. ')
-            numeroUtente = parseInt(prompt('Inserici un numero da 1 - 80 : '));
-
-        }
-        
-        if (listaNumeriUtente.includes(numeroUtente)) {
-            
-            alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
-        
-        } else {
-            
-            listaNumeriUtente.push(numeroUtente);
-        
-        }
-
-    }
-
-} else if (difficoltà == 'difficile') {                                           // Se la difficoltà è Difficile
+        break;
     
-    while (bomb.includes(numeroUtente) !== true){
-        
-        var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 50 : '));
+    case 'media':
 
-        while ( (numeroUtente < 1) || (numeroUtente > 50)) {
-            
-            alert('Il numero inserito non è corretto. ')
-            numeroUtente = parseInt(prompt('Inserici un numero da 1 - 50 : '));
-
-        }
+        while (bomb.includes(numeroUtente) !== true){
         
-        if (listaNumeriUtente.includes(numeroUtente)) {
-        
-            alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
-        
-        } else {
-        
-            listaNumeriUtente.push(numeroUtente);
-        
-        }
+            var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 80 : '));
     
-    }
+            while ( (numeroUtente < 1) || (numeroUtente > 80)) {
+                
+                alert('Il numero inserito non è corretto. ')
+                numeroUtente = parseInt(prompt('Inserici un numero da 1 - 80 : '));
+    
+            }
+            
+            if (listaNumeriUtente.includes(numeroUtente)) {
+                
+                alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
+            
+            } else {
+                
+                listaNumeriUtente.push(numeroUtente);
+            
+            }
+    
+        }
+        
+    case 'difficile':
 
+        while (bomb.includes(numeroUtente) !== true){
+        
+            var numeroUtente = parseInt(prompt('Inserici un numero da 1 - 50 : '));
+    
+            while ( (numeroUtente < 1) || (numeroUtente > 50)) {
+                
+                alert('Il numero inserito non è corretto. ')
+                numeroUtente = parseInt(prompt('Inserici un numero da 1 - 50 : '));
+    
+            }
+            
+            if (listaNumeriUtente.includes(numeroUtente)) {
+            
+                alert('Il numero digitato è gia presente.\nInserire un nuovo numero')
+            
+            } else {
+            
+                listaNumeriUtente.push(numeroUtente);
+            
+            }
+        
+        }
+
+
+    default:
+        break;
 }
+
 
 /*******************
  * 
@@ -115,30 +123,29 @@ if (difficoltà == 'facile') {                                                  
  * 
  ******************/
 
+var numeroUtenteHtml = document.getElementById('numero-utente-html');
+var listaNumeriUtenteHtml = document.getElementById('lista-numeri-utente-html');
+var bombHtml = document.getElementById('bomb-html'); 
+var risultato = document.getElementById('risultato');
+var score = document.getElementById('score');
+
 if (bomb.includes(numeroUtente)) {                                                // Se hai perso
-    console.log('<---------- DATI INSERITI DALL UTENTE ---------->');
-    console.log('');
-    console.log('ULTIMO NUMERO UTENTE INSERITO : ', numeroUtente);
-    console.log('');
-    console.log('<---------- DATI ELABORATI ---------->');
-    console.log('');
-    console.log('NUMERI UTENTE INSERITI : ', listaNumeriUtente);
-    console.log('NUMERI BOMBA : ', bomb);
-    console.log('');
-    console.log('<---------- RISULTATO FINALE ---------->');
-    console.log('');
-    console.log('Ritenta sarai più fortunato. ');
-    console.log('IL TUO PUNTEGGIO : ', listaNumeriUtente.length);          
-} else {                                                                          // Se hai vinto
-    console.log('Congratulazioni hai vinto!! ');
+    // Ultimo numero inserito
+    numeroUtenteHtml.innerHtml = numeroUtente;
+    // Dati elaborati
+    listaNumeriUtenteHtml.innerHtml = listaNumeriUtente;
+    bombHtml.innerHTML = bomb;
+    // Risultato finale
+    risultato.innerHTML = 'Ritenta sarai più fortunato';
+    score.innerHTML = listaNumeriUtente.length;       
+} else {                                                                         // Se hai vinto
+    risultato.innerHTML = 'Hai vinto';
 }
-
-
 
 ////////// FUNZIONI \\\\\\\\\\
 
 function randomNumber(min, max) {  //------------------------------------------------- Genera un numero random
-    return Math.floor( Math.random() * (max - min) + min) + min;
+    return Math.floor( Math.random() * (max - min + 1) ) + min;
 }
 
 function difficoltàCheck() { //------------------------------------------------------- Controllo inserimento difficoltà utente
