@@ -131,9 +131,9 @@ var score = document.getElementById('score');
 
 if (bomb.includes(numeroUtente)) {                                                // Se hai perso
     // Ultimo numero inserito
-    numeroUtenteHtml.innerHtml = numeroUtente;
+    numeroUtenteHtml.innerHTML = numeroUtente;
     // Dati elaborati
-    listaNumeriUtenteHtml.innerHtml = listaNumeriUtente;
+    listaNumeriUtenteHtml.innerHTML = listaNumeriUtente;
     bombHtml.innerHTML = bomb;
     // Risultato finale
     risultato.innerHTML = 'Ritenta sarai più fortunato';
